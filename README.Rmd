@@ -1,0 +1,77 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# geodatenzentrum
+
+The goal of geodatenzentrum is to ...
+
+## Installation
+
+tbd
+
+## Example
+
+```{r}
+library(geodatenzentrum)
+```
+
+### Create a `geodatenzentrum` object
+
+```{r}
+GDZ <- geodatenzentrum$new(local_file_root = "/home/philipp/gdz")
+GDZ
+```
+
+### Sync a datasource
+
+```{r}
+GDZ$sync(source = "vg250")
+```
+
+### List downloaded files
+
+```{r}
+GDZ$files(collection = "vg250")
+```
+
+### List available shp layers
+
+```{r}
+GDZ$shp_layers(collection = "vg250")
+```
+
+### Fortify a layer from a collection
+
+```{r,warning=FALSE}
+krs <- GDZ$fortify(collection = "vg250", layer = "VG250_KRS")
+head(krs)
+```
+
+
+### Plot!
+
+```{r}
+library(ggplot2)
+
+ggplot(data = krs) + 
+  aes(x = long, y = lat, group = group) + 
+  geom_polygon(colour = "black", fill = NA) + 
+  coord_equal()
+```
+
+
+
+
+
+
