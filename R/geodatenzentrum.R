@@ -2,7 +2,8 @@
 #'
 #' tbd.
 #'
-#' @section Usage
+#' @section Usage:
+#' ```
 #' GDZ <- geodatenzentrum$new(local_file_root)
 #'
 #' GDZ$snyc(source)
@@ -13,19 +14,55 @@
 #' GDZ$make_sp(sf)
 #' GDZ$make_df(sp)
 #' GDZ$fortify(collection, layer)
+#' ```
 #'
-#' @section Arguments
+#' @section Arguments:
 #' * `GDZ`: `geodatenzentrum` object.
 #' * `local_file_root`: Path to sync remote data sources to.
 #'
-#' @section Details
-#' tbd.
+#' @section Details:
+#' `$sync()` syncs a remote data source to the `local_file_root`. Available data sources are listed in `$sources`.
+#'
+#' `$files()` lists all synced files for a collection/data source.
+#'
+#' `$shp_layers()` lists all available shp layers for a collection/data source.
+#'
+#' `$describe()` returns information on a collection/data source, e.g. documentation, citation and license.'
+#'
+#' `$read_sf()` returns an object of class `sf` for a layer of a collection/data source.
+#'
+#' `$make_sp()` retuns an object of class `Spatial` for a given object of class `sp`.
+#'
+#' `$make_df()` fortifies a given object of class `Spatial` to a `data.frame`.
+#'
+#' `$fortify()` combines `$read_sf()`, `$make_sp()` and `$make_df()` and returns a fortified `data.frame` for a given layer of a collection/data source.
+#'
+#' @name geodatenzentrum
 #' @import bowerbird
 #' @importFrom R6 R6Class
 #' @importFrom tools file_path_sans_ext
 #' @importFrom sf st_read
 #' @importFrom sp CRS
 #' @importFrom broom tidy
+#' @examples
+#' \dontrun{
+#' library(geodatenzentrum)
+#'
+#' # Create an instance of class geodatenzentrum
+#' GDZ <- geodatenzentrum$new(local_file_root="./geodatenzentrum")
+#'
+#' # List available data sources
+#' GDZ$sources
+#'
+#' # Sync a data source
+#' GDZ$sync(source = "VG250")
+#'
+#' # List available shp layers for the collection
+#' GDZ$shp_layers(collection = "VG250")
+#'
+#' # Fortify a shp layer to a data.frame
+#' GDZ$fortify(collection = "VG250", layer = "VG250_KRS")
+#' }
 #' @export
 
 geodatenzentrum <- R6Class("geodatenzentrum", list(

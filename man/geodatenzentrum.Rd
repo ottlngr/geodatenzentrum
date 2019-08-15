@@ -11,4 +11,65 @@ geodatenzentrum
 \description{
 tbd.
 }
+\section{Usage}{
+\preformatted{GDZ <- geodatenzentrum$new(local_file_root)
+
+GDZ$snyc(source)
+GDZ$files(collection)
+GDZ$shp_layers(collection)
+GDZ$describe(collection)
+GDZ$read_sf(collection, layer)
+GDZ$make_sp(sf)
+GDZ$make_df(sp)
+GDZ$fortify(collection, layer)
+}
+}
+
+\section{Arguments}{
+
+\itemize{
+\item \code{GDZ}: \code{geodatenzentrum} object.
+\item \code{local_file_root}: Path to sync remote data sources to.
+}
+}
+
+\section{Details}{
+
+\code{$sync()} syncs a remote data source to the \code{local_file_root}. Available data sources are listed in \code{$sources}.
+
+\code{$files()} lists all synced files for a collection/data source.
+
+\code{$shp_layers()} lists all available shp layers for a collection/data source.
+
+\code{$describe()} returns information on a collection/data source, e.g. documentation, citation and license.'
+
+\code{$read_sf()} returns an object of class \code{sf} for a layer of a collection/data source.
+
+\code{$make_sp()} retuns an object of class \code{Spatial} for a given object of class \code{sp}.
+
+\code{$make_df()} fortifies a given object of class \code{Spatial} to a \code{data.frame}.
+
+\code{$fortify()} combines \code{$read_sf()}, \code{$make_sp()} and \code{$make_df()} and returns a fortified \code{data.frame} for a given layer of a collection/data source.
+}
+
+\examples{
+\dontrun{
+library(geodatenzentrum)
+
+# Create an instance of class geodatenzentrum
+GDZ <- geodatenzentrum$new(local_file_root="./geodatenzentrum")
+
+# List available data sources
+GDZ$sources
+
+# Sync a data source
+GDZ$sync(source = "VG250")
+
+# List available shp layers for the collection
+GDZ$shp_layers(collection = "VG250")
+
+# Fortify a shp layer to a data.frame
+GDZ$fortify(collection = "VG250", layer = "VG250_KRS")
+}
+}
 \keyword{datasets}
