@@ -1,12 +1,10 @@
 Package: geodatenzentrum
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Use Open Data From German Federal Agency for Cartography and Geodesy
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(person("Philipp", "Ottolinger", role = c("aut", "cre"), email = "philipp@ottolinger.de"))
+Description: tbd.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

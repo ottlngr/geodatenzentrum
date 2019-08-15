@@ -1,5 +1,25 @@
 #' geodatenzentrum
 #'
+#' tbd.
+#'
+#' @section Usage
+#' GDZ <- geodatenzentrum$new(local_file_root)
+#'
+#' GDZ$snyc(source)
+#' GDZ$files(collection)
+#' GDZ$shp_layers(collection)
+#' GDZ$describe(collection)
+#' GDZ$read_sf(collection, layer)
+#' GDZ$make_sp(sf)
+#' GDZ$make_df(sp)
+#' GDZ$fortify(collection, layer)
+#'
+#' @section Arguments
+#' * `GDZ`: `geodatenzentrum` object.
+#' * `local_file_root`: Path to sync remote data sources to.
+#'
+#' @section Details
+#' tbd.
 #' @import bowerbird
 #' @importFrom R6 R6Class
 #' @importFrom tools file_path_sans_ext
@@ -10,10 +30,10 @@
 geodatenzentrum <- R6Class("geodatenzentrum", list(
 
   sources = list(
-    "vg250" = bb_source(
+    "VG250" = bb_source(
       name = "VG250",
       description = "The data stock comprises all administrative units of all hierarchical levels of public authority from the state to the municipalities with their administrative boundaries, statistical code numbers and the name of the administrative unit as well as the specific designation of the level of public authority of the respective federal state.",
-      id = "1234",
+      id = "vg250_0101.utm32s.shape.ebenen",
       doc_url = "http://sg.geodatenzentrum.de/web_download/vg/vg250_3112/vg250_3112.pdf",
       license = "dl-de/by-2-0",
       citation = "© GeoBasis-DE / BKG 2019",
@@ -21,12 +41,24 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
       method = list("bb_handler_rget"),
       postprocess = list("bb_unzip")
     ),
-    "kfz250" = bb_source(
+    "VG250_EW" = bb_source(
+      name = "VG250_EW",
+      description = "The data stock comprises all administrative units of all hierarchical levels of public authority from the state to the municipalities with their administrative boundaries, statistical code numbers and the name of the administrative unit as well as the specific designation of the level of public authority of the respective federal state. The product VG250-EW contains population figures additionally.",
+      id = "vg250-ew_2017-12-31.utm32s.shape.ebenen",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/vg/vg250-ew_3112/vg250-ew_3112.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://www.geodatenzentrum.de/auftrag1/archiv/vektor/vg250_ebenen/2017/vg250-ew_2017-12-31.utm32s.shape.ebenen.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "KFZ250" = bb_source(
       name = "KFZ250",
-      id = "1234",
-      doc_url = "abc",
-      license = "abc",
-      citation = "abc",
+      description = "he overview of the license plate numbers contains the feature type AX_KreisRegion and AX_Gemeinde with attributes about: Name, Regional key of the administrative areas License plate number and Position (geometry data from the administrative areas in the scale 1:250 000 and additionally attributive geographical coordinates - GGMMSS -)",
+      id = "kfz250_2018-09.utm32s.shape",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/sonstige/kfz250/kfz250.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
       source_url = "http://www.geodatenzentrum.de/auftrag1/archiv/vektor/kfz250/2018/kfz250_2018-09.utm32s.shape.zip",
       method = list("bb_handler_rget"),
       postprocess = list("bb_unzip")
@@ -46,6 +78,7 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
   },
 
   print = function() {
+
     cat("<geodatenzentrum>",
         "\n\n",
         "Local file root: ",
@@ -56,6 +89,7 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
         "\n\n",
         "Reference: http://www.geodatenzentrum.de/",
         sep = "")
+
   },
 
   sync = function(source) {
@@ -74,12 +108,32 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
 
     files <- self$files(collection)
     files <- files[grepl(".shp", files)]
-    files <- sapply(files, file_name_without_ext, USE.NAMES = FALSE)
+    files <- sapply(files, basename_without_extension, USE.NAMES = FALSE)
     return(files)
 
-    # files <- self$files(collection)
-    # files <- tools::file_path_sans_ext(files[grepl(".shp", files)])
-    # self$layers <- basename(files)
+  },
+
+  describe = function(collection) {
+
+    name <- self$sources[[collection]]$name
+    description <- self$sources[[collection]]$description
+    doc_url <- self$sources[[collection]]$doc_url
+    license <- self$sources[[collection]]$license
+    citation <- self$sources[[collection]]$citation
+
+    n_files <- length(self$files(collection = collection))
+    shp_layers <- self$shp_layers(collection = collection)
+
+    cat("\n",
+        sprintf("<%s>", name),
+        "\n\n",
+        paste(description), "\n\n",
+        "Documentation: ", paste(doc_url), "\n",
+        "Lincense: ", paste(license), "\n",
+        "Citation: ", paste(citation), "\n\n",
+        sprintf("Contains %s files. Call $files() for details.", n_files), "\n\n",
+        "Contained shp layers: ", paste0(shp_layers, collapse = ", "), "\n\n",
+        sep = "")
 
   },
 
@@ -98,6 +152,7 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
   make_sp = function(sf) {
 
     sp <- as(sf, "Spatial")
+    sp <- sp::spTransform(sp, "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
 
     return(sp)
 
@@ -125,11 +180,3 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
 
 ))
 
-file_name_without_ext <- function(filename) {
-
-  a <- strsplit(filename, "/", fixed = TRUE)[[1]]
-  f <- a[length(a)]
-  f <- sub("([^.]+.+)\\.[[:alnum:]]+$", "\\1", f)
-  return(f)
-
-}
