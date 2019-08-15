@@ -2,45 +2,45 @@
 #'
 #' tbd.
 #'
-#' @section Usage:
+#' @usage NULL
+#' @format [R6::R6Class] object.
+#'
+#' @section Construction:
 #' ```
 #' GDZ <- geodatenzentrum$new(local_file_root)
-#'
-#' GDZ$snyc(source)
-#' GDZ$files(collection)
-#' GDZ$shp_layers(collection)
-#' GDZ$describe(collection)
-#' GDZ$read_sf(collection, layer)
-#' GDZ$make_sp(sf)
-#' GDZ$make_df(sp)
-#' GDZ$fortify(collection, layer)
 #' ```
 #'
-#' @section Arguments:
 #' * `GDZ`: `geodatenzentrum` object.
 #' * `local_file_root`: Path to sync remote data sources to.
 #'
-#' @section Details:
-#' `$sync()` syncs a remote data source to the `local_file_root`. Available data sources are listed in `$sources`.
+#' @section Methods:
+#' `$sync(source)`\cr
+#' Syncs a remote data source to the `local_file_root`. Available data sources are listed in `$sources`.
 #'
-#' `$files()` lists all synced files for a collection/data source.
+#' `$files(collection)`\cr
+#' Lists all synced files for a collection/data source.
 #'
-#' `$shp_layers()` lists all available shp layers for a collection/data source.
+#' `$shp_layers(collection)`\cr
+#' Lists all available shp layers for a collection/data source.
 #'
-#' `$describe()` returns information on a collection/data source, e.g. documentation, citation and license.'
+#' `$describe(collection)`\cr
+#' Returns information on a collection/data source, e.g. documentation, citation and license.'
 #'
-#' `$read_sf()` returns an object of class `sf` for a layer of a collection/data source.
+#' `$read_sf(collection, layer)`\cr
+#' Returns an object of class `sf` for a layer of a collection/data source.
 #'
-#' `$make_sp()` retuns an object of class `Spatial` for a given object of class `sp`.
+#' `$make_sp(sf)`\cr
+#' Retuns an object of class `Spatial` for a given object of class `sf`.
 #'
-#' `$make_df()` fortifies a given object of class `Spatial` to a `data.frame`.
+#' `$make_df(sp)`\cr
+#' Fortifies a given object of class `Spatial` to a `data.frame`.
 #'
-#' `$fortify()` combines `$read_sf()`, `$make_sp()` and `$make_df()` and returns a fortified `data.frame` for a given layer of a collection/data source.
+#' `$fortify(collection, layer)`\cr
+#' Combines `$read_sf()`, `$make_sp()` and `$make_df()` and returns a fortified `data.frame` for a given layer of a collection/data source.
 #'
 #' @name geodatenzentrum
 #' @import bowerbird
 #' @importFrom R6 R6Class
-#' @importFrom tools file_path_sans_ext
 #' @importFrom sf st_read
 #' @importFrom sp CRS
 #' @importFrom broom tidy

@@ -4,52 +4,44 @@
 \name{geodatenzentrum}
 \alias{geodatenzentrum}
 \title{geodatenzentrum}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
-\usage{
-geodatenzentrum
-}
+\format{\link[R6:R6Class]{R6::R6Class} object.}
 \description{
 tbd.
 }
-\section{Usage}{
+\section{Construction}{
 \preformatted{GDZ <- geodatenzentrum$new(local_file_root)
-
-GDZ$snyc(source)
-GDZ$files(collection)
-GDZ$shp_layers(collection)
-GDZ$describe(collection)
-GDZ$read_sf(collection, layer)
-GDZ$make_sp(sf)
-GDZ$make_df(sp)
-GDZ$fortify(collection, layer)
 }
-}
-
-\section{Arguments}{
-
 \itemize{
 \item \code{GDZ}: \code{geodatenzentrum} object.
 \item \code{local_file_root}: Path to sync remote data sources to.
 }
 }
 
-\section{Details}{
+\section{Methods}{
 
-\code{$sync()} syncs a remote data source to the \code{local_file_root}. Available data sources are listed in \code{$sources}.
+\code{$sync(source)}\cr
+Syncs a remote data source to the \code{local_file_root}. Available data sources are listed in \code{$sources}.
 
-\code{$files()} lists all synced files for a collection/data source.
+\code{$files(collection)}\cr
+Lists all synced files for a collection/data source.
 
-\code{$shp_layers()} lists all available shp layers for a collection/data source.
+\code{$shp_layers(collection)}\cr
+Lists all available shp layers for a collection/data source.
 
-\code{$describe()} returns information on a collection/data source, e.g. documentation, citation and license.'
+\code{$describe(collection)}\cr
+Returns information on a collection/data source, e.g. documentation, citation and license.'
 
-\code{$read_sf()} returns an object of class \code{sf} for a layer of a collection/data source.
+\code{$read_sf(collection, layer)}\cr
+Returns an object of class \code{sf} for a layer of a collection/data source.
 
-\code{$make_sp()} retuns an object of class \code{Spatial} for a given object of class \code{sp}.
+\code{$make_sp(sf)}\cr
+Retuns an object of class \code{Spatial} for a given object of class \code{sf}.
 
-\code{$make_df()} fortifies a given object of class \code{Spatial} to a \code{data.frame}.
+\code{$make_df(sp)}\cr
+Fortifies a given object of class \code{Spatial} to a \code{data.frame}.
 
-\code{$fortify()} combines \code{$read_sf()}, \code{$make_sp()} and \code{$make_df()} and returns a fortified \code{data.frame} for a given layer of a collection/data source.
+\code{$fortify(collection, layer)}\cr
+Combines \code{$read_sf()}, \code{$make_sp()} and \code{$make_df()} and returns a fortified \code{data.frame} for a given layer of a collection/data source.
 }
 
 \examples{
