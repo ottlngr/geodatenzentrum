@@ -26,7 +26,7 @@ GDZ
 #> 
 #> Local file root: /home/philipp/gdz
 #> 
-#> Available sources: vg250, kfz250, 
+#> Available sources: VG250, VG250_EW, KFZ250, 
 #> 
 #> Reference: http://www.geodatenzentrum.de/
 ```
@@ -34,9 +34,9 @@ GDZ
 ### Sync a datasource
 
 ``` r
-GDZ$sync(source = "vg250")
+GDZ$sync(source = "VG250")
 #> 
-#> Fri Jul 26 20:55:50 2019
+#> Thu Aug 15 22:20:08 2019
 #> Synchronizing dataset: VG250
 #> Source URL http://sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen.zip
 #> --------------------------------------------------------------------------------------------
@@ -46,13 +46,13 @@ GDZ$sync(source = "vg250")
 #>  downloading file 1 of 1: http://sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen.zip ...  file unchanged on server, not downloading.
 #>   decompressing: /home/philipp/gdz/sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen.zip ... no new files to extract (not overwriting existing files) ... done.
 #> 
-#> Fri Jul 26 20:55:50 2019 dataset synchronization complete: VG250
+#> Thu Aug 15 22:20:09 2019 dataset synchronization complete: VG250
 ```
 
 ### List downloaded files
 
 ``` r
-GDZ$files(collection = "vg250")
+GDZ$files(collection = "VG250")
 #>  [1] "/home/philipp/gdz/sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen.zip"                                                 
 #>  [2] "/home/philipp/gdz/sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen/"                                                    
 #>  [3] "/home/philipp/gdz/sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen/datenlizenz_deutschland_v2_0.pdf"                    
@@ -114,7 +114,7 @@ GDZ$files(collection = "vg250")
 ### List available shp layers
 
 ``` r
-GDZ$shp_layers(collection = "vg250")
+GDZ$shp_layers(collection = "VG250")
 #> [1] "VG250_LAN" "VG250_PK"  "VG250_RBZ" "VG250_LI"  "VG250_GEM" "VG250_VWG"
 #> [7] "VG250_STA" "VG250_KRS"
 ```
@@ -122,7 +122,7 @@ GDZ$shp_layers(collection = "vg250")
 ### Fortify a layer from a collection
 
 ``` r
-krs <- GDZ$fortify(collection = "vg250", layer = "VG250_KRS")
+krs <- GDZ$fortify(collection = "VG250", layer = "VG250_KRS")
 #> Reading layer `VG250_KRS' from data source `/home/philipp/gdz/sg.geodatenzentrum.de/web_download/vg/vg250_0101/utm32s/shape/vg250_0101.utm32s.shape.ebenen/vg250_ebenen' using driver `ESRI Shapefile'
 #> Simple feature collection with 431 features and 23 fields
 #> geometry type:  MULTIPOLYGON
@@ -132,13 +132,13 @@ krs <- GDZ$fortify(collection = "vg250", layer = "VG250_KRS")
 #> proj4string:    +proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
 #> Regions defined for each Polygons
 head(krs)
-#>   id     long     lat order  hole piece group ADE GF BSG    RS   AGS
-#> 1  1 526513.8 6075133     1 FALSE     1   1.1   4  4   1 01001 01001
-#> 2  1 526547.9 6074977     2 FALSE     1   1.1   4  4   1 01001 01001
-#> 3  1 526560.3 6074979     3 FALSE     1   1.1   4  4   1 01001 01001
-#> 4  1 526652.6 6074987     4 FALSE     1   1.1   4  4   1 01001 01001
-#> 5  1 526733.6 6075032     5 FALSE     1   1.1   4  4   1 01001 01001
-#> 6  1 526852.8 6075060     6 FALSE     1   1.1   4  4   1 01001 01001
+#>   id     long      lat order  hole piece group ADE GF BSG    RS   AGS
+#> 1  1 526513.8 16075133     1 FALSE     1   1.1   4  4   1 01001 01001
+#> 2  1 526547.9 16074977     2 FALSE     1   1.1   4  4   1 01001 01001
+#> 3  1 526560.3 16074979     3 FALSE     1   1.1   4  4   1 01001 01001
+#> 4  1 526652.6 16074987     4 FALSE     1   1.1   4  4   1 01001 01001
+#> 5  1 526733.6 16075032     5 FALSE     1   1.1   4  4   1 01001 01001
+#> 6  1 526852.8 16075060     6 FALSE     1   1.1   4  4   1 01001 01001
 #>         SDV_RS       GEN              BEZ IBZ BEM NBD SN_L SN_R SN_K SN_V1
 #> 1 010010000000 Flensburg Kreisfreie Stadt  40  --  ja   01    0   01    00
 #> 2 010010000000 Flensburg Kreisfreie Stadt  40  --  ja   01    0   01    00

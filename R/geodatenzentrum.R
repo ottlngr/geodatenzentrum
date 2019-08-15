@@ -24,6 +24,7 @@
 #' @importFrom R6 R6Class
 #' @importFrom tools file_path_sans_ext
 #' @importFrom sf st_read
+#' @importFrom sp CRS
 #' @importFrom broom tidy
 #' @export
 
@@ -152,7 +153,8 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
   make_sp = function(sf) {
 
     sp <- as(sf, "Spatial")
-    sp <- sp::spTransform(sp, "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+    #sp <- sp::spTransform(sp, "+proj=longlat +datum=EPSG:32732 +no_defs +ellps=EPSG:32732 +towgs84=0,0,0")
+    sp <- sp::spTransform(sp, CRS("+init=epsg:32732"))
 
     return(sp)
 
