@@ -191,6 +191,8 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
         "Available sources: ",
         paste0(names(self$sources), collape = ", "),
         "\n\n",
+        "Use $describe() to get more detailed information on a data soource.",
+        "\n\n",
         "Reference: http://www.geodatenzentrum.de/",
         sep = "")
 

@@ -1,0 +1,563 @@
+---
+title: "geodatenzentrum: Data sources"
+author: "Philipp Ottolinger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# geodatenzentrum
+
+```{r}
+library(geodatenzentrum)
+GDZ <- geodatenzentrum$new(local_file_root = "/home/philipp/gdz")
+GDZ
+```
+
+# Data sources
+
+## VG250
+
+```{r}
+GDZ$describe("VG250")
+```
+
+```{r}
+GDZ$sync("VG250")
+```
+
+```{r}
+GDZ$shp_layers("VG250")
+```
+
+### VG250_STA
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "VG250_STA")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+
+### VG250_LAN
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "VG250_LAN")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### VG250_RBZ
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "VG250_RBZ")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### VG250_KRS
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "VG250_KRS")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.3) + coord_equal()
+```
+
+### VG250_VWG
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "VG250_VWG")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.1) + coord_equal()
+```
+
+### VG250_GEM
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "VG250_GEM")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.05) + coord_equal()
+```
+
+## VG250_EW
+
+
+```{r}
+GDZ$describe("VG250_EW")
+```
+
+```{r}
+GDZ$sync("VG250_EW")
+```
+
+```{r}
+GDZ$shp_layers("VG250_EW")
+```
+
+### VG250_STA
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250_EW", "VG250_STA")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = EWZ), colour = "black") + coord_equal()
+```
+
+### VG250_LAN
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250_EW", "VG250_LAN")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = EWZ), colour = "black") + coord_equal()
+```
+
+### VG250_RBZ
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250_EW", "VG250_RBZ")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = EWZ), colour = "black") + coord_equal()
+```
+
+### VG250_KRS
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250_EW", "VG250_KRS")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = EWZ), colour = "black", size = 0.3) + coord_equal() + scale_fill_viridis_c()
+```
+
+### VG250_VWG
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250_EW", "VG250_VWG")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = EWZ), colour = "black", size = 0.1) + coord_equal() + scale_fill_viridis_c()
+```
+
+### VG250_GEM
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250_EW", "VG250_GEM")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = EWZ), colour = "black", size = 0.05) + coord_equal() + scale_fill_viridis_c()
+```
+
+## VG250_KFZ
+
+```{r}
+GDZ$describe("KFZ250")
+```
+
+```{r}
+GDZ$sync("KFZ250")
+```
+
+```{r}
+GDZ$shp_layers("KFZ250")
+```
+
+### KFZ250
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("KFZ250", "KFZ250")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+
+d <- subset(df, substr(RS, 1, 2) == "10")
+
+kfz <- aggregate(d[, 2:3], list(d$KFZ), mean)
+
+ggplot() + 
+  geom_polygon(data = d, aes(x = long, y = lat, group = group), colour = "black", fill = "white", size = 0.05) + 
+  geom_text(data = kfz, aes(x = long, y = lat, label = Group.1)) +
+  coord_equal()
+```
+
+## NUTS250
+
+```{r}
+GDZ$describe("NUTS250")
+```
+
+```{r}
+GDZ$sync("NUTS250")
+```
+
+```{r}
+GDZ$shp_layers("NUTS250")
+```
+
+### 250_NUTS1
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("NUTS250", "250_NUTS1")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+
+### 250_NUTS2
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("NUTS250", "250_NUTS2")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### 250_NUTS3
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("NUTS250", "250_NUTS3")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.3) + coord_equal()
+```
+
+## VZ250
+
+```{r}
+GDZ$describe("VZ250")
+```
+
+```{r}
+GDZ$sync("VZ250")
+```
+
+```{r}
+GDZ$shp_layers("VZ250")
+```
+
+### VZ250_GEM
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VZ250", "VZ250_GEM")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.05) + coord_equal()
+```
+
+## VG2500
+
+```{r}
+GDZ$describe("VG2500")
+```
+
+```{r}
+GDZ$sync("VG2500")
+```
+
+```{r}
+GDZ$shp_layers("VG2500")
+```
+
+### vg2500_sta
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG250", "vg250_sta")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### vg2500_lan
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG2500", "vg2500_lan")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### vg2500_rbz
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG2500", "vg2500_rbz")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### vg2500_krs
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG2500", "vg2500_krs")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.3) + coord_equal()
+```
+
+
+## VG1000
+
+```{r}
+GDZ$describe("VG1000")
+```
+
+```{r}
+GDZ$sync("VG1000")
+```
+
+```{r}
+GDZ$shp_layers("VG1000")
+```
+
+### VG1000_STA
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG1000", "VG1000_STA")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### VG1000_LAN
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG1000", "VG1000_LAN")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### VG1000_RBZ
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG1000", "VG1000_RBZ")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### VG1000_KRS
+
+```{r,warning=FALSE}
+df <- GDZ$fortify("VG1000", "VG1000_KRS")
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+library(ggplot2)
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA, size = 0.3) + coord_equal()
+```
+
+## GN250
+
+```{r}
+GDZ$describe("GN250")
+```
+
+```{r}
+GDZ$sync("GN250")
+```
+
+```{r}
+GDZ$shp_layers("GN250")
+```
+
+### GN250_p
+
+```{r,warning=FALSE}
+#df <- GDZ$fortify("GN250", "GN250_p")
+```
+
+```{r}
+#head(df)
+```
+
+```{r}
+#library(ggplot2)
+#ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+```
+
+### GN250_b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

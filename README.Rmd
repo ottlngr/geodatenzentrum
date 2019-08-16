@@ -33,7 +33,13 @@ GDZ <- geodatenzentrum$new(local_file_root = "/home/philipp/gdz")
 GDZ
 ```
 
-### Sync a datasource
+### Show details for a data source
+
+```{r}
+GDZ$describe("GN250")
+```
+
+### Sync a data source
 
 ```{r}
 GDZ$sync(source = "VG250")
