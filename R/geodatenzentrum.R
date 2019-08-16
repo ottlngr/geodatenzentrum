@@ -92,12 +92,78 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
     ),
     "KFZ250" = bb_source(
       name = "KFZ250",
-      description = "he overview of the license plate numbers contains the feature type AX_KreisRegion and AX_Gemeinde with attributes about: Name, Regional key of the administrative areas License plate number and Position (geometry data from the administrative areas in the scale 1:250 000 and additionally attributive geographical coordinates - GGMMSS -)",
+      description = "The overview of the license plate numbers contains the feature type AX_KreisRegion and AX_Gemeinde with attributes about: Name, Regional key of the administrative areas License plate number and Position (geometry data from the administrative areas in the scale 1:250 000 and additionally attributive geographical coordinates - GGMMSS -)",
       id = "kfz250_2018-09.utm32s.shape",
       doc_url = "http://sg.geodatenzentrum.de/web_download/sonstige/kfz250/kfz250.pdf",
       license = "dl-de/by-2-0",
       citation = "© GeoBasis-DE / BKG 2019",
       source_url = "http://www.geodatenzentrum.de/auftrag1/archiv/vektor/kfz250/2018/kfz250_2018-09.utm32s.shape.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "NUTS250" = bb_source(
+      name = "NUTS250",
+      description = "For the territory of the Federal Republic of Germany, the dataset comprises the regions of the systematics of the territorial units NUTS for the purpose of European statistics.",
+      id = "nuts250_0101.utm32s.shape",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/nuts/nuts250_0101/nuts250_0101_eng.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://sg.geodatenzentrum.de/web_download/nuts/nuts250_0101/utm32s/shape/nuts250_0101.utm32s.shape.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "VZ250" = bb_source(
+      name = "VZ250",
+      description = "The dataset includes the 'Gemeinden' (municipalities) of the Federal Republic of Germany with the superior administrative units and the corresponding NUTS regions.",
+      id = "vz250_0101.utm32s.shape",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/vz/vz250_0101/vz250_0101_eng.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://sg.geodatenzentrum.de/web_download/vz/vz250_0101/utm32s/shape/vz250_0101.utm32s.shape.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "VG2500" = bb_source(
+      name = "VG2500",
+      description = "The data stock comprises the administrative units of the hierarchical levels of public authority from the state to the districts with: their boundaries, the regional key number and the name of the administrative unit as well as the specific designation of the level of public authority of the respective federal state.",
+      id = "vg2500.utm32s.shape",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/vg/vg2500/vg2500_eng.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://sg.geodatenzentrum.de/web_download/vg/vg2500/utm32s/shape/vg2500.utm32s.shape.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "VG1000" = bb_source(
+      name = "VG1000",
+      description = "The data stock comprises the administrative units of the hierarchical levels of public authority from the state to the districts with their administrative boundaries, statistical code numbers and the name of the administrative unit as well as the specific designation of the level of public authority of the respective federal state.",
+      id = "vg1000_0101.utm32s.shape.ebenen",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/vg/vg1000_0101/vg1000_0101_eng.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://sg.geodatenzentrum.de/web_download/vg/vg1000_0101/utm32s/shape/vg1000_0101.utm32s.shape.ebenen.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "VG1000" = bb_source(
+      name = "VG1000",
+      description = "The data stock comprises the administrative units of the hierarchical levels of public authority from the state to the districts with their administrative boundaries, statistical code numbers and the name of the administrative unit as well as the specific designation of the level of public authority of the respective federal state.",
+      id = "vg1000_0101.utm32s.shape.ebenen",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/vg/vg1000_0101/vg1000_0101_eng.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://sg.geodatenzentrum.de/web_download/vg/vg1000_0101/utm32s/shape/vg1000_0101.utm32s.shape.ebenen.zip",
+      method = list("bb_handler_rget"),
+      postprocess = list("bb_unzip")
+    ),
+    "GN250" = bb_source(
+      name = "GN250",
+      description = "The Geographical Names contain names of the object ranges settlement, traffic, vegetation, water bodies, relief and areas.",
+      id = "gn250.utm32s.shape",
+      doc_url = "http://sg.geodatenzentrum.de/web_download/gn/gn250/gn250_eng.pdf",
+      license = "dl-de/by-2-0",
+      citation = "© GeoBasis-DE / BKG 2019",
+      source_url = "http://sg.geodatenzentrum.de/web_download/gn/gn250/utm32s/shape/gn250.utm32s.shape.zip",
       method = list("bb_handler_rget"),
       postprocess = list("bb_unzip")
     )
