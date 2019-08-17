@@ -52,7 +52,7 @@ head(df)
 
 ```{r}
 library(ggplot2)
-ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_equal()
+ggplot() + geom_polygon(data = df, aes(x = long, y = lat, group = group), colour = "black", fill = NA) + coord_quickmap()
 ```
 
 
@@ -528,6 +528,8 @@ GDZ$shp_layers("GN250")
 ### GN250_p
 
 ```{r,warning=FALSE}
+sf <- GDZ$read_sf("GN250", "GN250_p")
+sp <- GDZ$make_sp(sf)
 #df <- GDZ$fortify("GN250", "GN250_p")
 ```
 

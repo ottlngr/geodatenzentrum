@@ -259,7 +259,7 @@ geodatenzentrum <- R6Class("geodatenzentrum", list(
 
     sp <- as(sf, "Spatial")
     #sp <- sp::spTransform(sp, "+proj=longlat +datum=EPSG:32732 +no_defs +ellps=EPSG:32732 +towgs84=0,0,0")
-    sp <- sp::spTransform(sp, CRS("+init=epsg:32732"))
+    sp <- sp::spTransform(sp, CRS("+init=epsg:4326"))
 
     return(sp)
 
